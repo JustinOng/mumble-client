@@ -1,0 +1,62 @@
+- To change mute/deafen state, send
+
+MumbleProto.UserState
+{
+  self_mute: true,
+  self_deaf: false
+}
+
+Server responds
+
+MumbleProto.UserState
+{
+  session: 17,
+  actor: 17,
+  self_mute: true,
+  self_deaf: false
+}
+
+- Ping packet looks like
+MumbleProto.Ping { timestamp: '104674',
+  good: 0,
+  late: 0,
+  lost: 0,
+  resync: 0,
+  udp_packets: 0,
+  tcp_packets: 0 }
+
+Server responds
+
+MumbleProto.Ping { timestamp: '104674', good: 1, late: 0, lost: 0, resync: 0 }
+
+or 
+
+MumbleProto.Ping { timestamp: '4999504',
+  good: 1,
+  late: 0,
+  lost: 0,
+  resync: 0,
+  udp_packets: 1,
+  tcp_packets: 1,
+  udp_ping_avg: 2.5840001106262207,
+  udp_ping_var: 0,
+  tcp_ping_avg: 4.488999843597412,
+  tcp_ping_var: 0 }
+  
+and 
+
+MumbleProto.Ping { timestamp: '4999504', good: 2, late: 0, lost: 0, resync: 0 }
+
+- To get list of users, transmit 
+
+MumbleProto.UserList { users: [] }
+
+Server responds
+
+MumbleProto.UserList { users:
+   [ { user_id: 25, name: 'Justin' },
+     { user_id: 27, name: 'Bot' } ] }
+
+To change user names,
+MumbleProto.UserList { users: [ { user_id: 27, name: 'Bot1' } ] }
+
